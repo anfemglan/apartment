@@ -1,4 +1,4 @@
-package com.atafl.lease.common.com.atguigu.lease.common.mybatisplus;
+package com.atafl.lease.common.mybatisplus;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;

@@ -1,9 +1,9 @@
-package com.atguigu.lease.web.app.vo.history;
+package com.atafl.lease.web.app.vo.history;
 
 
-import com.atguigu.lease.model.entity.BrowsingHistory;
-import com.atguigu.lease.model.enums.ReleaseStatus;
-import com.atguigu.lease.web.app.vo.graph.GraphVo;
+import com.atafl.lease.model.entity.BrowsingHistory;
+import com.atafl.lease.model.enums.ReleaseStatus;
+import com.atafl.lease.web.app.vo.graph.GraphVo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 

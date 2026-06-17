@@ -1,4 +1,4 @@
-package com.atguigu.lease.common.result;
+package com.atafl.lease.common.result;
 
 import lombok.Getter;
 
@@ -17,6 +17,7 @@ public enum ResultCodeEnum {
     REPEAT_SUBMIT(206, "重复提交"),
     DELETE_ERROR(207, "请先删除子集"),
 
+
     ADMIN_ACCOUNT_EXIST_ERROR(301, "账号已存在"),
     ADMIN_CAPTCHA_CODE_ERROR(302, "验证码错误"),
     ADMIN_CAPTCHA_CODE_EXPIRED(303, "验证码已过期"),
@@ -29,6 +30,7 @@ public enum ResultCodeEnum {
     ADMIN_ACCOUNT_DISABLED_ERROR(308, "该用户已被禁用"),
     ADMIN_ACCESS_FORBIDDEN(309, "无访问权限"),
 
+
     APP_LOGIN_AUTH(501, "未登陆"),
     APP_LOGIN_PHONE_EMPTY(502, "手机号码为空"),
     APP_LOGIN_CODE_EMPTY(503, "验证码为空"),
@@ -39,7 +41,12 @@ public enum ResultCodeEnum {
 
 
     TOKEN_EXPIRED(601, "token过期"),
-    TOKEN_INVALID(602, "token非法");
+    TOKEN_INVALID(602, "token非法"),
+
+
+    SECKILL_STOCK_NOT_ENOUGH(701, "手慢了，已被抢完"),
+    SECKILL_REPEAT_PURCHASE(702, "您已抢过该房间"),
+    SECKILL_ACTIVITY_INVALID(703, "活动未开始或已结束");
 
 
     private final Integer code;

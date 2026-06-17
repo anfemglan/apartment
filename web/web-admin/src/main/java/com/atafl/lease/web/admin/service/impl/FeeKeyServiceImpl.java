@@ -3,8 +3,12 @@ package com.atafl.lease.web.admin.service.impl;
 import com.atafl.lease.model.entity.FeeKey;
 import com.atafl.lease.web.admin.mapper.FeeKeyMapper;
 import com.atafl.lease.web.admin.service.FeeKeyService;
+import com.atafl.lease.web.admin.vo.fee.FeeKeyVo;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
 * @author liubo
@@ -14,7 +18,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class FeeKeyServiceImpl extends ServiceImpl<FeeKeyMapper, FeeKey>
     implements FeeKeyService{
+    @Autowired
+    private FeeKeyMapper feeKeyMapper;
 
+
+    @Override
+    public List<FeeKeyVo> listFeeInfo() {
+        return feeKeyMapper.listFeeInfo();
+    }
 }
 
 

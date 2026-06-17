@@ -1,10 +1,10 @@
-package com.atguigu.lease.web.app.vo.room;
+package com.atafl.lease.web.app.vo.room;
 
-import com.atguigu.lease.model.entity.*;
-import com.atguigu.lease.web.app.vo.apartment.ApartmentItemVo;
-import com.atguigu.lease.web.app.vo.attr.AttrValueVo;
-import com.atguigu.lease.web.app.vo.fee.FeeValueVo;
-import com.atguigu.lease.web.app.vo.graph.GraphVo;
+import com.atafl.lease.model.entity.*;
+import com.atafl.lease.web.app.vo.apartment.ApartmentItemVo;
+import com.atafl.lease.web.app.vo.attr.AttrValueVo;
+import com.atafl.lease.web.app.vo.fee.FeeValueVo;
+import com.atafl.lease.web.app.vo.graph.GraphVo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 

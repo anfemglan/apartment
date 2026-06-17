@@ -1,6 +1,6 @@
-package com.atguigu.lease.web.app.vo.fee;
+package com.atafl.lease.web.app.vo.fee;
 
-import com.atguigu.lease.model.entity.FeeValue;
+import com.atafl.lease.model.entity.FeeValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 

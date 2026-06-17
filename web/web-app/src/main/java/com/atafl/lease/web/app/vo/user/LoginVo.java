@@ -1,4 +1,4 @@
-package com.atguigu.lease.web.app.vo.user;
+package com.atafl.lease.web.app.vo.user;
 
 
 import io.swagger.v3.oas.annotations.media.Schema;

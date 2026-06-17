@@ -1,10 +1,18 @@
-package com.atguigu.lease.web.app.service.impl;
+package com.atafl.lease.web.app.service.impl;
 
-import com.atguigu.lease.model.entity.ViewAppointment;
-import com.atguigu.lease.web.app.mapper.ViewAppointmentMapper;
-import com.atguigu.lease.web.app.service.ViewAppointmentService;
+import com.atafl.lease.model.entity.ViewAppointment;
+import com.atafl.lease.web.app.mapper.ViewAppointmentMapper;
+import com.atafl.lease.web.app.service.ApartmentInfoService;
+import com.atafl.lease.web.app.service.ViewAppointmentService;
+import com.atafl.lease.web.app.vo.apartment.ApartmentItemVo;
+import com.atafl.lease.web.app.vo.appointment.AppointmentDetailVo;
+import com.atafl.lease.web.app.vo.appointment.AppointmentItemVo;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author liubo
@@ -15,6 +23,30 @@ import org.springframework.stereotype.Service;
 public class ViewAppointmentServiceImpl extends ServiceImpl<ViewAppointmentMapper, ViewAppointment>
         implements ViewAppointmentService {
 
+    @Autowired
+    private ViewAppointmentMapper viewAppointmentMapper;
+
+    @Autowired
+    private ApartmentInfoService apartmentInfoService;
+    @Override
+    public List<AppointmentItemVo> getAppoitmentListByUserId(Long userId) {
+
+
+        return viewAppointmentMapper.getAppoitmentListByUserId(userId);
+    }
+
+
+    @Override
+    public AppointmentDetailVo getDetailById(Long id) {
+        AppointmentDetailVo appointmentDetailVo = new AppointmentDetailVo();
+        ViewAppointment viewAppointment = viewAppointmentMapper.selectById(id);
+        ApartmentItemVo apartmentItemVo = apartmentInfoService.selectItemById(viewAppointment.getApartmentId());
+
+        BeanUtils.copyProperties(viewAppointmentMapper.selectById(id), appointmentDetailVo);
+        appointmentDetailVo.setApartmentItemVo(apartmentItemVo);
+
+        return appointmentDetailVo;
+    }
 }
 
 

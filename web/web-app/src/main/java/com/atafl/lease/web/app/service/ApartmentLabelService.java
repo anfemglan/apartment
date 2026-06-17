@@ -1,6 +1,6 @@
-package com.atguigu.lease.web.app.service;
+package com.atafl.lease.web.app.service;
 
-import com.atguigu.lease.model.entity.ApartmentLabel;
+import com.atafl.lease.model.entity.ApartmentLabel;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

@@ -1,8 +1,10 @@
 package com.atafl.lease.web.admin.service;
 
 import com.atafl.lease.model.entity.AttrKey;
-import com.atguigu.lease.web.admin.vo.attr.AttrKeyVo;
+import com.atafl.lease.web.admin.vo.attr.AttrKeyVo;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
 * @author liubo
@@ -11,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface AttrKeyService extends IService<AttrKey> {
 
+    List<AttrKeyVo> listAttrInfo();
 }

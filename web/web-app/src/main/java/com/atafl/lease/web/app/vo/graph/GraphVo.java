@@ -1,4 +1,4 @@
-package com.atguigu.lease.web.app.vo.graph;
+package com.atafl.lease.web.app.vo.graph;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

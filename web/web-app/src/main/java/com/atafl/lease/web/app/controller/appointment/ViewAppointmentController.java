@@ -1,12 +1,17 @@
-package com.atguigu.lease.web.app.controller.appointment;
+package com.atafl.lease.web.app.controller.appointment;
 
 
-import com.atguigu.lease.common.result.Result;
-import com.atguigu.lease.model.entity.ViewAppointment;
-import com.atguigu.lease.web.app.vo.appointment.AppointmentDetailVo;
-import com.atguigu.lease.web.app.vo.appointment.AppointmentItemVo;
+import com.atafl.lease.common.login.LoginUserHolder;
+import com.atafl.lease.common.result.Result;
+import com.atafl.lease.model.entity.ViewAppointment;
+import com.atafl.lease.web.app.mapper.ViewAppointmentMapper;
+import com.atafl.lease.web.app.service.ViewAppointmentService;
+import com.atafl.lease.web.app.vo.appointment.AppointmentDetailVo;
+import com.atafl.lease.web.app.vo.appointment.AppointmentItemVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,22 +21,30 @@ import java.util.List;
 @RequestMapping("/app/appointment")
 public class ViewAppointmentController {
 
+    @Autowired
+    private ViewAppointmentService service;
+
     @Operation(summary = "保存或更新看房预约")
     @PostMapping("/saveOrUpdate")
     public Result saveOrUpdate(@RequestBody ViewAppointment viewAppointment) {
-        return Result.ok();
+            viewAppointment.setUserId(LoginUserHolder.getLoginUser().getUserId());
+            service.saveOrUpdate(viewAppointment);
+            return Result.ok();
     }
 
     @Operation(summary = "查询个人预约看房列表")
     @GetMapping("listItem")
     public Result<List<AppointmentItemVo>> listItem() {
-        return Result.ok();
+        Long userId = LoginUserHolder.getLoginUser().getUserId();
+        List<AppointmentItemVo> list = service.getAppoitmentListByUserId(userId);
+        return Result.ok(list);
     }
 
     @GetMapping("getDetailById")
-    @Operation(summary = "根据ID查询预约详情信息")
+    @Operation(summary = "根据 ID 查询预约详情信息")
     public Result<AppointmentDetailVo> getDetailById(Long id) {
-        return Result.ok();
+        AppointmentDetailVo detailVo = service.getDetailById(id);
+        return Result.ok(detailVo);
     }
 
 }

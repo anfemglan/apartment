@@ -1,7 +1,9 @@
-package com.atguigu.lease.web.app.service;
+package com.atafl.lease.web.app.service;
 
-import com.atguigu.lease.model.entity.LeaseTerm;
+import com.atafl.lease.model.entity.LeaseTerm;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
 * @author liubo
@@ -9,4 +11,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2023-07-26 11:12:39
 */
 public interface LeaseTermService extends IService<LeaseTerm> {
+    List<LeaseTerm> getListByRoomId(Long id);
 }

@@ -1,8 +1,10 @@
 package com.atafl.lease.web.admin.service;
 
 import com.atafl.lease.model.entity.SystemUser;
-import com.atguigu.lease.web.admin.vo.system.user.SystemUserItemVo;
-import com.atguigu.lease.web.admin.vo.system.user.SystemUserQueryVo;
+import com.atafl.lease.web.admin.vo.system.user.SystemUserItemVo;
+import com.atafl.lease.web.admin.vo.system.user.SystemUserQueryVo;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -12,4 +14,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface SystemUserService extends IService<SystemUser> {
 
+    IPage<SystemUserItemVo> pageSystemUser(Page<SystemUserItemVo> page, SystemUserQueryVo queryVo);
+
+    SystemUserItemVo getSystemUserById(long id);
 }

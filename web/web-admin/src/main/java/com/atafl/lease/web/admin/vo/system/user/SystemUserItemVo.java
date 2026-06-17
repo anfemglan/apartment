@@ -1,6 +1,6 @@
-package com.atguigu.lease.web.admin.vo.system.user;
+package com.atafl.lease.web.admin.vo.system.user;
 
-import com.atguigu.lease.model.entity.SystemUser;
+import com.atafl.lease.model.entity.SystemUser;
 import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

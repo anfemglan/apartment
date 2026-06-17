@@ -72,4 +72,12 @@ public class Knife4jConfiguration {
                         "/admin/user/**"
                 ).build();
     }
+    
+    @Bean
+    public GroupedOpenApi seckillAPI() {
+        return GroupedOpenApi.builder().group("秒杀管理").
+                pathsToMatch(
+                        "/admin/seckill/**"
+                ).build();
+    }
 }

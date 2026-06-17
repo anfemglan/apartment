@@ -1,8 +1,8 @@
-package com.atguigu.lease.web.app.service.impl;
+package com.atafl.lease.web.app.service.impl;
 
-import com.atguigu.lease.model.entity.PaymentType;
-import com.atguigu.lease.web.app.mapper.PaymentTypeMapper;
-import com.atguigu.lease.web.app.service.PaymentTypeService;
+import com.atafl.lease.model.entity.PaymentType;
+import com.atafl.lease.web.app.mapper.PaymentTypeMapper;
+import com.atafl.lease.web.app.service.PaymentTypeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

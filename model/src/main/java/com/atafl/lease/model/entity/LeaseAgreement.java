@@ -1,5 +1,6 @@
 package com.atafl.lease.model.entity;
 
+import com.baomidou.mybatisplus.annotation.Version;
 import io.swagger.v3.oas.annotations.media.Schema;
 import com.atafl.lease.model.enums.LeaseSourceType;
 import com.atafl.lease.model.enums.LeaseStatus;
@@ -75,5 +76,10 @@ public class LeaseAgreement extends BaseEntity {
     @Schema(description = "备注信息")
     @TableField(value = "additional_info")
     private String additionalInfo;
+
+    @Schema(description = "版本号（乐观锁）")
+    @TableField(value = "version")
+    @Version
+    private Integer version;
 
 }

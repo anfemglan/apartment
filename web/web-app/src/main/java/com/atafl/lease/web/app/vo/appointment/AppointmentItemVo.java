@@ -1,7 +1,7 @@
-package com.atguigu.lease.web.app.vo.appointment;
+package com.atafl.lease.web.app.vo.appointment;
 
-import com.atguigu.lease.model.enums.AppointmentStatus;
-import com.atguigu.lease.web.app.vo.graph.GraphVo;
+import com.atafl.lease.model.enums.AppointmentStatus;
+import com.atafl.lease.web.app.vo.graph.GraphVo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

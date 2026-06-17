@@ -1,9 +1,18 @@
 package com.atafl.lease.web.admin.service.impl;
 
-import com.atafl.lease.model.entity.LeaseAgreement;
-import com.atafl.lease.web.admin.mapper.LeaseAgreementMapper;
+import com.atafl.lease.model.entity.*;
+import com.atafl.lease.web.admin.mapper.*;
 import com.atafl.lease.web.admin.service.LeaseAgreementService;
+import com.atafl.lease.web.admin.service.LeaseTermService;
+import com.atafl.lease.web.admin.service.PaymentTypeService;
+import com.atafl.lease.web.admin.vo.agreement.AgreementQueryVo;
+import com.atafl.lease.web.admin.vo.agreement.AgreementVo;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +24,47 @@ import org.springframework.stereotype.Service;
 public class LeaseAgreementServiceImpl extends ServiceImpl<LeaseAgreementMapper, LeaseAgreement>
         implements LeaseAgreementService {
 
+    @Autowired
+    private LeaseAgreementMapper leaseAgreementMapper;
+
+    @Autowired
+    private ApartmentInfoMapper apartmentInfoMapper;
+
+    @Autowired
+    private RoomInfoMapper roomInfoMapper;
+
+    @Autowired
+    private PaymentTypeMapper paymentTypeMapper;
+
+    @Autowired
+    private LeaseTermMapper leaseTermMapper;
+
+
+    @Override
+    public IPage<AgreementVo> pageAgreement(Page<AgreementVo> page, AgreementQueryVo queryVo) {
+        return leaseAgreementMapper.pageAgreement(page, queryVo);
+    }
+
+    @Override
+    public AgreementVo getAgreementById(Long id) {
+        LeaseAgreement leaseAgreement = leaseAgreementMapper.selectById(id);
+        ApartmentInfo apartmentInfo = apartmentInfoMapper.selectById(leaseAgreement.getApartmentId());
+
+        RoomInfo roomInfo = roomInfoMapper.selectById(leaseAgreement.getRoomId());
+
+        PaymentType paymentType = paymentTypeMapper.selectById(leaseAgreement.getPaymentTypeId());
+
+        LeaseTerm leaseTerm = leaseTermMapper.selectById(leaseAgreement.getLeaseTermId());
+
+        AgreementVo agreementVo = new AgreementVo();
+        BeanUtils.copyProperties(leaseAgreement, agreementVo);
+        agreementVo.setApartmentInfo(apartmentInfo);
+        agreementVo.setRoomInfo(roomInfo);
+        agreementVo.setPaymentType(paymentType);
+        agreementVo.setLeaseTerm(leaseTerm);
+
+        return agreementVo;
+    }
 }
 
 

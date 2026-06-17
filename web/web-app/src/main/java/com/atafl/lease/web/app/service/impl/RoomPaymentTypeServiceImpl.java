@@ -1,9 +1,9 @@
-package com.atguigu.lease.web.app.service.impl;
+package com.atafl.lease.web.app.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.atguigu.lease.model.entity.RoomPaymentType;
-import com.atguigu.lease.web.app.service.RoomPaymentTypeService;
-import com.atguigu.lease.web.app.mapper.RoomPaymentTypeMapper;
+import com.atafl.lease.model.entity.RoomPaymentType;
+import com.atafl.lease.web.app.service.RoomPaymentTypeService;
+import com.atafl.lease.web.app.mapper.RoomPaymentTypeMapper;
 import org.springframework.stereotype.Service;
 
 /**

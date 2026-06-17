@@ -1,8 +1,9 @@
-package com.atguigu.lease.web.app.controller.apartment;
+package com.atafl.lease.web.app.controller.apartment;
 
-import com.atguigu.lease.common.result.Result;
-import com.atguigu.lease.web.app.service.ApartmentInfoService;
-import com.atguigu.lease.web.app.vo.apartment.ApartmentDetailVo;
+import com.atafl.lease.common.result.Result;
+import com.atafl.lease.web.app.service.ApartmentInfoService;
+import com.atafl.lease.web.app.vo.apartment.ApartmentDetailVo;
+import com.atafl.lease.web.app.vo.apartment.ApartmentItemVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/app/apartment")
 public class ApartmentController {
 
+    @Autowired
+    private ApartmentInfoService apartmentInfoService;
     @Operation(summary = "根据id获取公寓信息")
     @GetMapping("getDetailById")
     public Result<ApartmentDetailVo> getDetailById(@RequestParam Long id) {
-        return Result.ok();
+        ApartmentDetailVo apartmentDetailVo = apartmentInfoService.selectDetailById(id);
+        return Result.ok(apartmentDetailVo);
     }
 }

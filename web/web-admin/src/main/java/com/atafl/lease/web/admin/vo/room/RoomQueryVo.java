@@ -1,4 +1,4 @@
-package com.atguigu.lease.web.admin.vo.room;
+package com.atafl.lease.web.admin.vo.room;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
