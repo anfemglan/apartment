@@ -238,6 +238,58 @@ mvn spring-boot:run
 
 ---
 
+## 服务器部署
+
+### 服务器信息
+
+| 项目 | 详情 |
+|------|------|
+| 环境 | Alibaba Cloud ECS（Alibaba Cloud Linux 3） |
+| IP | `139.129.51.230` |
+| JDK | OpenJDK 17 |
+| 内存 | 2GB |
+
+### 端口规划
+
+| 服务 | 端口 | JAR 路径 | 启动命令 |
+|------|------|------|------|
+| web-admin | 8080 | `/root/web-admin-1.0-SNAPSHOT.jar` | `nohup java -jar /root/web-admin-1.0-SNAPSHOT.jar --server.port=8080 > /root/app.log 2>&1 &` |
+| seckill | 8082 | `/root/seckill-0.0.1-SNAPSHOT.jar` | `nohup java -jar /root/seckill-0.0.1-SNAPSHOT.jar --server.port=8082 > /root/seckill.log 2>&1 &` |
+| web-app | — | ⚠️ 暂未部署 | — |
+
+### 部署流程
+
+```bash
+# 1. 本地打包
+cd lease && mvn package -pl web/web-admin -am -DskipTests
+
+# 2. 上传到服务器
+scp web/web-admin/target/web-admin-1.0-SNAPSHOT.jar root@139.129.51.230:/root/
+
+# 3. 重启服务
+ssh root@139.129.51.230
+kill $(pgrep -f web-admin-1.0-SNAPSHOT.jar)
+nohup java -jar /root/web-admin-1.0-SNAPSHOT.jar --server.port=8080 > /root/app.log 2>&1 &
+```
+
+### API 文档
+
+- 管理后台：`http://139.129.51.230:8080/doc.html`
+- 秒杀服务：`http://139.129.51.230:8082/doc.html`
+
+---
+
+## 关联项目
+
+| 项目 | 仓库 | 说明 |
+|------|------|------|
+| **Lease 主服务** | [anfemglan/apartment](https://github.com/anfemglan/apartment) | 本仓库 |
+| **Seckill 秒杀服务** | [anfemglan/seckill](https://github.com/anfemglan/seckill) | 独立秒杀微服务，通过 Redis + Lua 原子秒杀 |
+
+Lease 管理后台通过 `RestTemplate` 调用 Seckill 创建秒杀活动；秒杀成功后 Seckill 异步回调 Lease 自动创建租约。
+
+---
+
 ## 开发约定
 
 - JDK 版本：**17**
