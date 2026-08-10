@@ -279,6 +279,58 @@ nohup java -jar /root/web-admin-1.0-SNAPSHOT.jar --server.port=8081 > /root/app.
 
 ---
 
+## 在线演示（可直接操作）
+
+### 在线地址
+
+| 服务 | 地址 | 说明 |
+|------|------|------|
+| 管理后台 API 文档 | `http://139.129.51.230:8081/doc.html` | 需登录 |
+| 秒杀服务 API 文档 | `http://139.129.51.230:8082/doc.html` | 无鉴权 |
+
+### 测试账号
+
+| 账号 | 密码 | 角色 |
+|------|------|------|
+| `admin` | `123456` | 系统管理员 |
+
+### Step 1：登录管理后台
+
+1. 打开管理后台 API 文档，调用 `GET /admin/login/captcha` 获取图形验证码
+2. 将响应 `image` 字段的 base64 复制到浏览器地址栏（前面加 `data:image/png;base64,`），回车即可看到验证码图片；同时复制 `key` 字段
+3. 调用 `POST /admin/login`：
+
+```json
+{
+  "username": "admin",
+  "password": "123456",
+  "captchaKey": "上一步返回的 key",
+  "captchaCode": "图片上的 4 位验证码"
+}
+```
+
+4. 响应 `data` 字段即登录 Token。点击 Knife4j 右上角 **Authorize**，请求头名称填 **`access-token`**，值填该 Token，即可调用全部管理接口
+
+### Step 2：秒杀完整链路
+
+1. 打开秒杀服务 API 文档（8082），调用 `POST /admin/seckill/create` 创建秒杀活动（房间 ID 以管理后台房间列表查询到的为准，示例环境为 2；结束时间需晚于当前时间）：
+
+```json
+{
+  "roomIds": [2],
+  "seckillPrice": 99.00,
+  "startTime": "2026-08-10T00:00:00",
+  "endTime": "2026-08-11T23:59:59"
+}
+```
+
+2. 调用 `POST /seckill/2?userId=1` 抢购，返回「秒杀成功」
+3. 回到管理后台 API 文档，调用租约查询接口，可看到新增租约（附加信息为「秒杀活动自动创建」）——由秒杀服务异步回调自动落库
+
+> 说明：用户端短信登录依赖阿里云短信，演示环境未开通，请使用管理后台账号登录。
+
+---
+
 ## 关联项目
 
 | 项目 | 仓库 | 说明 |
