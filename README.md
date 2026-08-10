@@ -253,7 +253,7 @@ mvn spring-boot:run
 
 | 服务 | 端口 | JAR 路径 | 启动命令 |
 |------|------|------|------|
-| web-admin | 8080 | `/root/web-admin-1.0-SNAPSHOT.jar` | `nohup java -jar /root/web-admin-1.0-SNAPSHOT.jar --server.port=8080 > /root/app.log 2>&1 &` |
+| web-admin | 8081 | `/root/web-admin-1.0-SNAPSHOT.jar` | `nohup java -jar /root/web-admin-1.0-SNAPSHOT.jar --server.port=8081 > /root/app.log 2>&1 &` |
 | seckill | 8082 | `/root/seckill-0.0.1-SNAPSHOT.jar` | `nohup java -jar /root/seckill-0.0.1-SNAPSHOT.jar --server.port=8082 > /root/seckill.log 2>&1 &` |
 | web-app | — | ⚠️ 暂未部署 | — |
 
@@ -269,12 +269,12 @@ scp web/web-admin/target/web-admin-1.0-SNAPSHOT.jar root@139.129.51.230:/root/
 # 3. 重启服务
 ssh root@139.129.51.230
 kill $(pgrep -f web-admin-1.0-SNAPSHOT.jar)
-nohup java -jar /root/web-admin-1.0-SNAPSHOT.jar --server.port=8080 > /root/app.log 2>&1 &
+nohup java -jar /root/web-admin-1.0-SNAPSHOT.jar --server.port=8081 > /root/app.log 2>&1 &
 ```
 
 ### API 文档
 
-- 管理后台：`http://139.129.51.230:8080/doc.html`
+- 管理后台：`http://139.129.51.230:8081/doc.html`
 - 秒杀服务：`http://139.129.51.230:8082/doc.html`
 
 ---
